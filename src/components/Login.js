@@ -1,19 +1,45 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from 'react-router-dom';
 import '../index.css';
+import PropTypes from 'prop-types'
 
-function Login() {
+// import { loginUser } from '../loginUser';
+
+async function loginUser(credentials) {
+    return fetch('localhost:3800/api/v1/user/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(data => data.json())
+}
+
+function Login({ setToken }) {
+
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const token = await loginUser({
+            email,
+            password
+        });
+        setToken(token)
+    }
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="auth-inner">
                 <h3>Sign In</h3>
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="email" className="form-control" placeholder="Enter email" onChange={e => setEmail(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" className="form-control" placeholder="Enter password" onChange={e => setPassword(e.target.value)} />
                 </div>
                 <div className="form-group">
                     <div className="custom-control custom-checkbox">
@@ -27,5 +53,9 @@ function Login() {
         </form>
     );
 
+}
+
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
 }
 export default Login

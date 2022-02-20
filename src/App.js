@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -7,7 +7,21 @@ import SignUp from "./components/Signup";
 import Overview from './components/Overview';
 import Createtransaction from './components/Create_transaction';
 import Modal from './components/Modal';
+
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+}
+
 function App() {
+  const token = getToken()
+
+  if (!token) {
+    return <Login setToken={setToken} />
+
+  }
   return (
     <>
       <div className="App">

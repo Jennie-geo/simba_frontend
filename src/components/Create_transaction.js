@@ -56,7 +56,7 @@ const Create_transaction = (props) => {
                         </select>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary btn-block"><Link to="/overview" style={{ color: '#fff', textDecoration: 'none' }}>Submit</Link></button>
+                <button type="submit" className="btn btn-primary btn-block"><Link to="/overview" style={{ color: '#fff', textDecoration: 'none' }}>Send</Link></button>
             </div>
         </form>
     )
