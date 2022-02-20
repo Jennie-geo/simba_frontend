@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import SignUp from "./components/Signup";
 import Overview from './components/Overview';
 import Createtransaction from './components/Create_transaction';
-
+import Modal from './components/Modal';
 function App() {
   return (
     <>
@@ -34,6 +34,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/overview" element={<Overview />} />
             <Route path="/create-transaction" element={<Createtransaction />} />
+            {/* <Route path="/modal" element={<Modal />} /> */}
           </Routes>
 
         </div>

@@ -22,7 +22,7 @@ function Login() {
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary btn-block"><Link to="/overview">Submit</Link></button>
-                <div />
+
             </div>
         </form>
     );
