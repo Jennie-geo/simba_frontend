@@ -3,11 +3,13 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
-// import * as serviceWorker from "./serviceWorker";
+import { GlobalContextProvider } from "./components/Context";
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <GlobalContextProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </GlobalContextProvider>,
   document.getElementById("root")
 );
 // serviceWorker.unregister();

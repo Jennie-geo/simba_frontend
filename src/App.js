@@ -8,20 +8,20 @@ import Overview from './components/Overview';
 import Createtransaction from './components/Create_transaction';
 import Modal from './components/Modal';
 
-function setToken(userToken) {
-  sessionStorage.setItem('token', JSON.stringify(userToken));
-}
+// function setToken(userToken) {
+//   sessionStorage.setItem('token', JSON.stringify(userToken));
+// }
 
-function getToken() {
-}
+// function getToken() {
+// }
 
 function App() {
-  const token = getToken()
+  // const token = getToken()
 
-  if (!token) {
-    return <Login setToken={setToken} />
+  // if (!token) {
+  //   return <Login setToken={setToken} />
 
-  }
+  // }
   return (
     <>
       <div className="App">
