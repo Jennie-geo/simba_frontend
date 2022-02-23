@@ -8,14 +8,24 @@ const initialState = {
 const contextObj = createContext(initialState)
 
 function GlobalContextProvider({ children }) {
-    const [data, setData] = useState(JSON.parse(sessionStorage.getItem('sessionData')) || initialState)
+
+    const [data, setData] = useState(JSON.parse(sessionStorage.getItem('sessionData')) || initialState);
 
     function loginSuccessful(userData, token) {
-        sessionStorage.getItem('session', JSON.stringify(userData))
-        console.log(setData({ ...data, user: userData, token }));
+
+        const updatedData = { ...data }
+        if (userData) {
+            updatedData.user = userData
+        }
+
+        if (token) {
+            updatedData.token = token
+        }
+        setData(updatedData);
+        sessionStorage.setItem('sessionData', JSON.stringify(updatedData));
     }
     function logout() {
-        sessionStorage.clear()
+        sessionStorage.clear();
         setData(initialState);
     }
     const globalStore = { data, loginSuccessful, logout };

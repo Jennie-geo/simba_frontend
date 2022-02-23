@@ -8,8 +8,8 @@ const Create_transaction = (props) => {
 
 
     return (
-        <form className='value-output'>
-            <div className="auth-inner">
+        <form className='auth-inner-transition'>
+            <div className="table table-dark">
 
                 <h2>Start Transaction</h2>
                 <div>

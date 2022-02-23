@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+
 export function SignUp() {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-    //   const [error, setError] = useState()
+    const [errors, setErrors] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+    })
 
+    const navigate = useNavigate()
     useEffect(() => {
 
     }, [])
+
     async function handleSubmit(e) {
         e.preventDefault()
         try {
+            console.log(firstName, "fuirstnnamr")
             const response = await fetch('http://localhost:3800/api/v1/user/user_signup', {
                 method: 'POST',
                 headers: {
-                    "Content-Type": "appliction/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     firstName: firstName,
@@ -30,10 +40,42 @@ export function SignUp() {
             }
             const resp = await response.json()
             console.log('successful', resp)
+            navigate('/sign-in')
         } catch (err) {
             console.log(err)
         }
     }
+    const validateFullName = () => {
+        if (!new RegExp(/^([A-Za-z]{3,16})([ ]{1})([A-Za-z]{3,16})?([ ]{1})?([A-Za-z]{3,16})$/).test(firstName)) {
+            setErrors((prevState) => ({
+                ...prevState,
+                firstName: 'Enter a valid first Name'
+            }));
+            return false;
+        } else {
+            setErrors((prevState) => ({
+                ...prevState,
+                firstName: '',
+            }));
+            return true;
+        }
+    };
+    const validatelastName = () => {
+        if (!new RegExp(/^([A-Za-z]{3,16})([ ]{1})([A-Za-z]{3,16})?([ ]{1})?([A-Za-z]{3,16})$/).test(firstName)) {
+            setErrors((prevState) => ({
+                ...prevState,
+                lastName: 'Enter a valid first Name'
+            }));
+            return false;
+        } else {
+            setErrors((prevState) => ({
+                ...prevState,
+                lastName: '',
+            }));
+            return true;
+        }
+    };
+
     const HandleSetFirstName = (e) => {
         setFirstName(e.target.value)
     }
@@ -41,7 +83,7 @@ export function SignUp() {
         setLastName(e.target.value)
     }
     const HandleSetEmail = (e) => {
-        setFirstName(e.target.value)
+        setEmail(e.target.value)
     }
     const HandlePassword = (e) => {
         setPassword(e.target.value)
@@ -68,7 +110,7 @@ export function SignUp() {
                 </div>
                 <button type="submit" className="btn btn-primary btn-block" onClick={handleSubmit}>Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered <a href="/sign-in">sign in?</a>
+                    Already registered? <a href="/sign-in">sign in</a>
                 </p>
             </div>
         </form>
