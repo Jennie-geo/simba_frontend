@@ -8,6 +8,7 @@ import Overview from './components/Overview';
 import Createtransaction from './components/Create_transaction';
 import { contextObj } from './components/Context'
 import { useContext } from 'react';
+import Modal from './components/Modal';
 
 function App() {
 

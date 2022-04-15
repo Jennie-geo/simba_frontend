@@ -5,23 +5,23 @@ import { contextObj } from './Context';
 import useAxios from 'axios-hooks';
 import Modal from './Modal';
 
-const Create_transaction = (props) => {
+const Create_transaction = () => {
     const [show, setShow] = useState(false)
 
     const contextData = useContext(contextObj);
     const [axiosResponse] = useAxios({
         url: `http://localhost:3800/transact/api/v1/createTransaction`,
 
-            method: 'POST',
-            headers: { 
-                'Authorization': `bearer ${contextData.data.token}`
-            },        
-    body: JSON.stringify({
-        //continue from here.
-    })
+        method: 'POST',
+        headers: {
+            'Authorization': `bearer ${contextData.data.token}`
+        },
+        body: JSON.stringify({
+            //continue from here.
+        })
     })
 
-    if(!axiosResponse) {
+    if (!axiosResponse) {
 
     }
     return (
@@ -35,12 +35,15 @@ const Create_transaction = (props) => {
                 </div>
                 <div>
                     <label style={{ marginRight: "10px" }}>To</label>
-                    {/* <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onClick={() => setShow(true)}>
+
+                    <button type="button" onClick={() => {
+                        setShow(true)
+                    }}
+                    >
                         choose target
-                    </button> */}
-                    <button type="button" onClick={() => setShow(true)}>choose target</button>
-                    {/* // pace your open props below */}
-                    <Modal title="My modal" onClose={() => setShow(false)} show={show}> <p>This is the modal body</p> </Modal>
+                    </button>
+                    {show && <Modal closeModal={setShow} />}
+                    {/* //title="My modal" onClose={() => setShow(false)} show={show}> <p>This is the modal body</p> </Modal */}
                     <div>
                         <input type="text" className="form-control" placeholder="receiver account number" />
                     </div>
