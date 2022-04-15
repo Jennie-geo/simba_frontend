@@ -4,10 +4,12 @@ import '../index.css';
 import PropTypes from 'prop-types'
 import { contextObj } from './Context';
 import { useNavigate } from "react-router-dom";
+import validate from "../validateForm";
 
 
 
 function Login() {
+    const [errors, setErrors] = useState({})
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -22,6 +24,7 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        //setErrors(validate)
         submitBtn.current.disabled = true;
         submitBtn.current.innerText = 'Please wait...'
         try {

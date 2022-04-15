@@ -16,7 +16,7 @@ const Overview
             headers: { 'Authorization': `bearer ${contextData.data.token}` }
         })
         const [transactionResponse] = useAxios({
-            url: 'http://localhost:3800/transact/api/v1/getTransaction',
+            url: 'http://localhost:3800/transact/api/v1/alltransactions',
             headers: { 'Authorization': `bearer ${contextData.data.token}` }
         })
 
@@ -43,7 +43,7 @@ const Overview
 
         let transactionData = []
         if (!transactionResponse.loading && !transactionResponse.error) {
-            transactionData = transactionResponse.data.msg
+            transactionData = (transactionResponse.data.msg)
         }
 
         return (
@@ -67,7 +67,9 @@ const Overview
                                         <th>From</th>
                                         <th>To</th>
                                         <th>Value</th>
-                                        <th>Source Currency</th>
+                                        <th >Source Currency
+                                            <th>USD: {userData.details.balance.USD}</th>
+                                        </th>
                                         <th>Target Currency</th>
                                         <th>Exchange Rate</th>
                                         <th>Created At</th>
