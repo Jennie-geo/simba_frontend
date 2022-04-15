@@ -22,12 +22,13 @@ const Modal = ({ closeModal }) => {
             <div className='titleCloseBtn'>
                 <button onClick={() => closeModal(false)}> X </button>
             </div>
-            <div className='title'><h2>Select an account name below</h2></div>
+            <div className='title'><h3>Select the receiver account Number</h3></div>
             {userData.map(user => (
-                <div className="body" >
-                    <div className='firstName' style={{ marginRight: "12px" }}>{user.firstName}</div>
-                    <div className='lastName'>{user.lastName}</div>
-                </div>
+                <tr className="body" >
+                    <td className='firstName' style={{ marginRight: "12px", fontSize: "18px" }}>{user.firstName}</td>
+                    <td className='lastName' style={{ marginRight: "12px", fontSize: "18px" }}>{user.lastName}</td>
+                    <td className='acctNum' style={{ fontSize: "18px" }}>{user.account_Number}</td>
+                </tr>
             ))}
             <div className='footer'>
                 <button onClick={() => closeModal(false)} id="cancelBtn">Cancel</button>
